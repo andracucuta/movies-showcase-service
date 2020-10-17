@@ -1,1 +1,44 @@
+server:
+  port: 9012
+  error:
+    whitelabel:
+      enabled: false
+
+spring:
+  webflux:
+    base-path: /rest/external
+  redis:
+    host: localhost
+    port: 6379
+    password: redispass
+    timeout: 60000
+    database: 0
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics
+      path-mapping:
+        health: status
+      base-path: /
+  endpoint:
+    health:
+      show-details: always
+      enabled: true
+
+external-services:
+  mg-tech-test:
+    base-path: https://mgtechtest.blob.core.windows.net/files
+    get-showcase-path: ${external-services.mg-tech-test.base-path}/showcase.json
+
+springdoc:
+  swagger-ui:
+    path: /api-docs
+
 

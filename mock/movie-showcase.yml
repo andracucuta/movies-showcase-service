@@ -1,0 +1,31 @@
+version: "3"
+services:
+  redis:
+    image: "redis:alpine"
+    command: redis-server --requirepass redispass
+    ports:
+      - "6379:6379"
+    volumes:
+      - $PWD/redis-data:/var/lib/redis
+      - $PWD/redis.conf:/usr/local/etc/redis/redis.conf
+    environment:
+      - REDIS_REPLICATION_MODE=master
+    networks:
+      - movies-showcase
+
+  movie-showcase-wiremock:
+    image: rodolpheche/wiremock:2.27.2
+    command:
+      - --global-response-templating
+      - --verbose
+    container_name: movie-showcase-wiremock
+    hostname: movie-showcase-wiremock
+    volumes:
+      - ./wiremock:/home/wiremock
+    ports:
+      - 28999:8080
+    networks:
+      - movies-showcase
+
+networks:
+  movies-showcase:
