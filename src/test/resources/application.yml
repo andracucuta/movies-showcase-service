@@ -1,0 +1,25 @@
+server:
+  port: 9012
+  servlet:
+    context-path: /rest/external
+  error:
+    whitelabel:
+      enabled: false
+
+spring:
+  webflux:
+    base-path: /rest/external
+  redis:
+    host: localhost
+    port: 6379
+    password: redispass
+    timeout: 60000
+    database: 0
+
+external-services:
+  mg-tech-test:
+    base-path:
+    get-showcase-path: ${external-services.mg-tech-test.base-path}/showcase.json
+
+
+

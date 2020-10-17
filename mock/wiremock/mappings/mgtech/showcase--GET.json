@@ -1,0 +1,16 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "https://mgtechtest.blob.core.windows.net/files/showcase.json"
+  },
+  "response": {
+    "status": 200,
+    "bodyFileName": "/showcase.json",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "transformers": [
+      "response-template"
+    ]
+  }
+}
